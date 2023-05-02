@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BackEnd.Data.Mappings;
+using BackEnd.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackEnd.Data;
 
@@ -9,9 +11,11 @@ public class DataContext : DbContext
     {
         
     }
-    
+
+    public DbSet<User> Users { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
+        modelBuilder.ApplyConfiguration(new UserMap());
     }
 }
