@@ -13,8 +13,8 @@ public class UserMap : IEntityTypeConfiguration<User>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)
-            .ValueGeneratedOnAdd()
-            .UseIdentityColumn();
+            .HasDefaultValueSql("uuid_generate_v4()")
+            .ValueGeneratedOnAdd();
         
         // Propriedades
         builder.Property(x => x.Name)
@@ -22,5 +22,28 @@ public class UserMap : IEntityTypeConfiguration<User>
             .HasColumnName("Name")
             .HasColumnType("VARCHAR")
             .HasMaxLength(80);
+        
+        builder.Property(x => x.Email)
+            .IsRequired()
+            .HasColumnName("Email")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(80);
+        
+        builder.Property(x => x.PasswordHash)
+            .IsRequired()
+            .HasColumnName("Password")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(80);
+
+        builder.Property(x => x.CreatedAt)
+            .HasDefaultValueSql("NOW()")
+            .ValueGeneratedOnAdd();
+        
+        builder.Property(x => x.UpdateAt)
+            .HasDefaultValueSql("NOW()")
+            .ValueGeneratedOnAddOrUpdate();
+
+        builder.Property(x => x.Deleted)
+            .HasDefaultValueSql("false");
     }
 }
