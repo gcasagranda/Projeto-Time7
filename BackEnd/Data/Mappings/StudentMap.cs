@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BackEnd.Data.Mappings;
 
-public class UserMap : IEntityTypeConfiguration<User>
+public class StudentMap : IEntityTypeConfiguration<Student>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<Student> builder)
     {
-        builder.ToTable("User");
+        builder.ToTable("Student");
 
         builder.HasKey(x => x.Id);
 
