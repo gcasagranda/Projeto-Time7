@@ -16,25 +16,6 @@ public class StudentMap : IEntityTypeConfiguration<Student>
             .HasDefaultValueSql("uuid_generate_v4()")
             .ValueGeneratedOnAdd();
         
-        // Propriedades
-        builder.Property(x => x.Name)
-            .IsRequired()
-            .HasColumnName("Name")
-            .HasColumnType("VARCHAR")
-            .HasMaxLength(80);
-        
-        builder.Property(x => x.Email)
-            .IsRequired()
-            .HasColumnName("Email")
-            .HasColumnType("VARCHAR")
-            .HasMaxLength(80);
-        
-        builder.Property(x => x.PasswordHash)
-            .IsRequired()
-            .HasColumnName("Password")
-            .HasColumnType("VARCHAR")
-            .HasMaxLength(80);
-
         builder.Property(x => x.CreatedAt)
             .HasDefaultValueSql("NOW()")
             .ValueGeneratedOnAdd();
@@ -45,5 +26,10 @@ public class StudentMap : IEntityTypeConfiguration<Student>
 
         builder.Property(x => x.Deleted)
             .HasDefaultValueSql("false");
+
+        builder
+            .HasOne(p => p.User)
+            .WithOne()
+            .HasForeignKey<Professor>(p => p.UserId);
     }
 }

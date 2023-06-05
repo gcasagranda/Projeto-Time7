@@ -16,6 +16,17 @@ public class ProfessorMap : IEntityTypeConfiguration<Professor>
             .HasDefaultValueSql("uuid_generate_v4()")
             .ValueGeneratedOnAdd();
         
+        builder.Property(x => x.CreatedAt)
+            .HasDefaultValueSql("NOW()")
+            .ValueGeneratedOnAdd();
+        
+        builder.Property(x => x.UpdatedAt)
+            .HasDefaultValueSql("NOW()")
+            .ValueGeneratedOnAddOrUpdate();
+
+        builder.Property(x => x.Deleted)
+            .HasDefaultValueSql("false");
+        
         builder
             .HasOne(p => p.User)
             .WithOne()
