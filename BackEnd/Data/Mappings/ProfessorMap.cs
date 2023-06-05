@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BackEnd.Data.Mappings;
 
-public class StudentMap : IEntityTypeConfiguration<Student>
+public class ProfessorMap : IEntityTypeConfiguration<Professor>
 {
-    public void Configure(EntityTypeBuilder<Student> builder)
+    public void Configure(EntityTypeBuilder<Professor> builder)
     {
-        builder.ToTable("Student");
-
+        builder.ToTable("Professor");
+        
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)
@@ -26,7 +26,7 @@ public class StudentMap : IEntityTypeConfiguration<Student>
 
         builder.Property(x => x.Deleted)
             .HasDefaultValueSql("false");
-
+        
         builder
             .HasOne(p => p.User)
             .WithOne()
