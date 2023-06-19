@@ -1,5 +1,7 @@
-export default function Home() {
+import Link from "next/link";
+
+export default function HomePage() {
   return (
-      <h1>Build home page here!</h1>
+      <h1>Build home page here! <Link href="/login">já possui uma conta?</Link></h1>
   );
 }
