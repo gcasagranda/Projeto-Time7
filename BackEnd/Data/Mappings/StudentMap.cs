@@ -30,6 +30,6 @@ public class StudentMap : IEntityTypeConfiguration<Student>
         builder
             .HasOne(p => p.User)
             .WithOne()
-            .HasForeignKey<Professor>(p => p.UserId);
+            .HasForeignKey<Student>(p => p.UserId);
     }
 }
